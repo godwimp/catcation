@@ -17,16 +17,6 @@
             border-color: #FF5800;
         }
     </style>
-    <script>
-        function saveLogin(){
-            var email = document.getElementById("email-address").value;
-            var username = email.substring(0,email.indexOf("@"));
-            var login = true;
-
-            localStorage.setItem("user",username);
-            localStorage.setItem("status",login);
-        }
-    </script>
 </head>
 <body>
     <div class="container-fluid w-100">

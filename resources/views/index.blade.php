@@ -49,23 +49,6 @@
                     </li>
                 </ul>
             </div>
-            <script>
-                window.onload = function(){
-                    var status = localStorage.getItem("status");
-        
-                    if(status){
-                        document.getElementById("nav-right").innerHTML = '<ul class="nav justify-content-end"><li class="nav-item"><img style="width: 40px; height: 40px;" class="rounded-circle" src="image/ProfilePic.jpg" alt="ProfilePic"></li><li class="nav-item"><a id="username-page" class="nav-link fw-bold" href="#" style="color: #FF5800;"></a></li><li class="nav-item dropdown"><button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu bg-white"><li><a style="color:#FF5800 "class="dropdown-item" onclick="logout()" href="index.html">Log out</a></li></ul></li></ul>';
-        
-                        document.getElementById("username-page").innerHTML = localStorage.getItem("user");
-                    }else{
-                        document.getElementById("nav-right").innerHTML = '<ul class="nav justify-content-end"><li class="nav-item"><button type="button" class="btn btn-outline-warning mx-2 text-bg-light shadow-sm" style="border-color: #FF5800;"><a href="signup.html" style="color: #FF5800; text-decoration: none;">Sign Up</a></button></li><li class="nav-item"><button type="button" class="btn btn-warning shadow-sm" style="background-color: #FF5800;"><a class="text-light" href="{{route('login')}}" style="text-decoration: none;">Log in</a></button></li></ul>';
-                    }
-                }
-                function logout(){
-                    localStorage.removeItem("user");
-                    localStorage.removeItem("status");
-                }
-            </script>
             <div id="nav-right" class="col">
             </div>
         </div>
@@ -214,38 +197,6 @@
             </div>
             <div class="col-2"></div>
         </div>
-<!-- Ini Package -->
-        <script>
-            localStorage.removeItem("packagename");
-            localStorage.removeItem("packagedesc");
-            function getPackage1(){
-                var packageName = document.getElementById('package-name-basic').innerHTML;
-
-                var packageDesc = document.getElementById("package-desc-basic").innerHTML;
-
-                localStorage.setItem("packagename", packageName);
-
-                localStorage.setItem("packagedesc", packageDesc)
-            }
-            function getPackage2(){
-                var packageName = document.getElementById('package-name-premium').innerHTML; 
-
-                var packageDesc = document.getElementById("package-desc-premium").innerHTML;
-
-                localStorage.setItem("packagename", packageName);
-
-                localStorage.setItem("packagedesc", packageDesc)
-            }
-            function getPackage3(){
-                var packageName = document.getElementById('package-name-luxury').innerHTML;
-
-                var packageDesc = document.getElementById("package-desc-luxury").innerHTML;
-
-                localStorage.setItem("packagename", packageName);
-
-                localStorage.setItem("packagedesc", packageDesc)
-            }
-        </script>
         <div class="row bg-warning-subtle text-center">
             <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages</div>
         </div>

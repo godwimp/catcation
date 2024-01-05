@@ -50,14 +50,40 @@
                 </ul>
             </div>
             <div id="nav-right" class="col">
-                <ul class="nav justify-content-end">
+                {{-- <ul class="nav justify-content-end">
                     <li class="nav-item">
                         <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
                         <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="/register">Register</a>
                     </li>
+                </ul> --}}
+                @auth
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, {{ $user }}</span>
+                    </li>
+                    {{-- button for dashboard --}}
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover mx-2" style="background-color: #FF5800;" href="{{ route('dashboard') }}">Start Order</a>
+                    </li>
+                    <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                    </li>
                 </ul>
+                @else
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover mx-2" style="background-color: #FF5800;" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('register') }}">Register</a>
+                    </li>
+                    </ul>
+                @endauth
             </div>
         </div>
 <!-- Ini bagian Home -->

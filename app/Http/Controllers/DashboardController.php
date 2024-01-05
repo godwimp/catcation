@@ -9,6 +9,14 @@ class DashboardController extends Controller
         $user = $request->user()->first_name;
         return view('dashboard', compact('user'));
     }
+    public function index(Request $request){
+        if (auth()->check()) {
+            $user = $request->user()->first_name;
+            return view('index', compact('user'));
+        } else {
+            return view('index');
+        }
+    }
     public function blog(Request $request){
         $user = $request->user()->first_name;
         return view('blog', compact('user'));

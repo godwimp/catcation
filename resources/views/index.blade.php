@@ -216,7 +216,7 @@
                         <p id="package-desc-basic" class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage1()" href="package.html">Details</a>
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('login') }}">Details</a>
                     </div>
                 </div>
             </div>
@@ -227,7 +227,7 @@
                         <p id="package-desc-premium" class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage2()" href="package.html">Details</a>
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('login') }}">Details</a>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                         <p id="package-desc-luxury" class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage3()" href="package.html">Details</a>
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('login') }}">Details</a>
                     </div>
                 </div>
             </div>

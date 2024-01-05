@@ -77,7 +77,11 @@
                 </ul>
             </div>
             <div id="nav-right" class="col">
-                
+                Welcome, {{$user}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
             </div>
         </div>
         <div class="row bg-warning-subtle">

@@ -19,22 +19,21 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid w-100">
-        <div class="row h-100">
-            <form method="POST" action="{{route('register')}}" class="col-8 h-100 needs-validation m-auto w-50" novalidate>
+    <div class="container-fluid w-100 py-4">
+        <div class="row h-100 my-4">
+            <form method="POST" action="{{route('register')}}" class="col-md-8 col-12 h-100 needs-validation m-auto w-50" novalidate>
                 @csrf
-                <div class="row justify-content-center">
-                    <div class="card rounded-0 border-0 w-50">
-                        <div class="card-body text-center">
-                            <div class="card-title">
-                                <div class="h4 fw-bold">Sign Up</div>
-                            </div>
-                            <div class="card-text">
-                                <div class="lead text-secondary">Let's get started!</div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="h4 fw-bold">Login</div>
                     </div>
-                </div>
+                </div><br>
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="lead fw-bold">Hi, Welcome back!</div>
+                        <div class="text-secondary">Login and keep your cat's well-being a top priority</div>
+                    </div>
+                </div><br><br>
                 <div class="row">
                     <label for="first_name" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="first_name" name="first_name" required>
@@ -96,7 +95,7 @@
                     <p class="text-secondary">Already have an account? <a href="{{ route('login') }}">Login</a></p>
                 </div>
             </form>
-            <div class="col-4" style="background-color: #FFCB7C;">
+            <div class="col-md-4 col-12 d-none d-md-flex" style="background-color: #FFCB7C;">
                 <img class="w-100" src="{{ asset('image/SignUpCat.png') }}" alt="SignUpCat">
             </div>
         </div>

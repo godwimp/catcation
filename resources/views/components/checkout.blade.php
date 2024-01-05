@@ -43,26 +43,28 @@
 </head> 
 <body class="bg-warning-subtle">
     <div class="container-fluid">
-        <div class="row bg-warning-subtle shadow-sm px-5 align-items-center fixed-top">
-            <div class="col-3">
+    <div class="row bg-warning-subtle shadow-sm px-5 align-items-center fixed-top">
+            <div class="col-md-3 col-6">
                 <ul class="nav justify-content-start p-3"> 
                     <li class="nav-item">
-                        <img src="{{asset('image/Logo.png')}}" alt="Logo" width=" 35px">
-                        <img src="{{asset('image/FontLogo.png')}}" alt="FontLogo" width="110px">
+                        <a href="/">
+                            <img src="{{asset('image/Logo.png')}}" alt="Logo" width=" 35px">
+                            <img class="d-none d-md-inline" src="{{asset('image/FontLogo.png')}}" alt="FontLogo" width="110px">
+                        </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="col-6">
+            <div class="col-6 d-none d-md-flex">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#about-us">About</a>
+                        <a class="nav-link text-black fw-bold" href="#about-us">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#services">Services</a>
+                        <a class="nav-link text-black fw-bold" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
@@ -75,18 +77,55 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="col">
-                <ul id="nav-right" class="nav justify-content-end">
-                    <li class="nav-item">
-                        <img style="width: 40px; height: 40px;" class="rounded-circle" src="image/ProfilePic.jpg" alt="ProfilePic">
+            <div id="nav-right" class="col-md-3 col-6">
+                @auth
+                <ul class="nav justify-content-end">
+                    <li class="nav-item dropdown-center">
+                        <button class="btn dropdown-toggle fw-bold" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img style="width: 40px; height: 40px;" class="rounded-circle" src="{{ asset('image/ProfilePic.jpg') }}" alt="ProfilePic">
+                            {{ $user }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="/">Home</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#about-us">About</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#services">Services</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#">FAQs</a>  
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#">Contact Us</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="/blog">Blog</a>
+                            </li>
+                            <li>
+                                <a type="button" class="dropdown-item fw-bold hover" style="color: #FF5800;" href="{{ route('dashboard') }}">Start Order</a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                    <button type="submit" class="dropdown-item fw-bold">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
-                Welcome, {{$user}}
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+                @else
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover mx-2" style="background-color: #FF5800;" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('register') }}">Register</a>
+                    </li>
+                    </ul>
+                @endauth
             </div>
         </div>
         <div class="row bg-warning-subtle">
@@ -99,16 +138,26 @@
             <div class="col-1">
                 <img width="40px" src="{{asset('image/VoicherLogo.png')}}" alt="VoicherLogo">
             </div>
-            <div class="col-9">
+            <div class="col-6">
                 <div class="fw-bold text-light">1 Voucher Available!</div>
             </div>
-            <div class="col-2 text-end">
+            <div class="col-5 text-end">
                 <button type="button" class="btn rounded-5 fw-bold" style="background-color: white; color: #FF5800;">Apply Now</button>
             </div>
         </div><br>
-        <form class="row" method="POST" action="{{route('transaction')}}">
+        <script>
+            function myFunction() {
+                let text;
+                if (confirm("Are you sure?") == true) {
+                    window.location.href = "/";
+                } else {
+                    window.location.href = "/checkout/{{ $selectedPackage->id }}";
+                }
+            }
+        </script>
+        <form class="row" method="POST" onsubmit="confirm()" action="{{route('transaction')}}">
             @csrf
-            <div class="col">
+            <div class="col-md-6 col-12">
                 <div class="card border-2 shadow p-3 h-100" style="border-color: #FF5800; color:#FF5800">
                     <div class="row">
                         <div class="col">
@@ -144,43 +193,40 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-6 col-12 mt-5 mt-md-0">
                 <div class="card border-2 shadow p-3 h-100" style="border-color: #FF5800; color:#FF5800">
                     <div class="card-body">
                         
                         <div class="card-title text-black">
                             <p class="h5 fw-bold" style="color:#FF5800;">Choose Package</p>
                             <select class="form-select rounded-1 border-dark-subtle" aria-label="Default select example" id="package_choose" name="package_choose">
-                                <option value="1">Basic</option>
-                                <option value="2">Premium</option>
-                                <option value="3">Luxury</option>
+                                @if ($selectedPackage->id == 1)
+                                    <option value="1" selected>Basic</option> 
+                                    <option value="2">Premium</option>
+                                    <option value="3">Luxury</option>
+                                @elseif ($selectedPackage->id == 2)
+                                    <option value="1">Basic</option>
+                                    <option value="2" selected>Premium</option>
+                                    <option value="3">Luxury</option>
+                                @elseif ($selectedPackage->id == 3)
+                                    <option value="1">Basic</option>
+                                    <option value="2">Premium</option>
+                                    <option value="3" selected>Luxury</option>
+                                @endif
                             </select>
-                            <p class="lead fw-bold" style="color: #FF5800;">Rp. <span id="package_price">0</span></p><br>
+                            <p class="lead fw-bold" style="color: #FF5800;">Rp. <span id="package_price">{{ $selectedPackage->price }}</p><br>
                             <script>
-                                const selectElement = document.getElementById('package_choose');
-                                const priceElement = document.getElementById('package_price');
-                            
-                                selectElement.addEventListener('change', function() {
-                                    const selectedValue = parseInt(this.value);
-                                    let price = 0;
-                            
-                                    switch (selectedValue) {
-                                        case 1:
-                                            price = 150000;
-                                            break;
-                                        case 2:
-                                            price = 250000;
-                                            break;
-                                        case 3:
-                                            price = 450000;
-                                            break;
-                                        default:
-                                            price = 0;
-                                            break;
+                                var mySelect = document.getElementById('package_choose');
+                                mySelect.onchange = (event) => {
+                                    if(mySelect.value == 1){
+                                        var inputText = {{ $packages[0]->price }};
+                                    }else if(mySelect.value == 2){
+                                        var inputText = {{ $packages[1]->price }};
+                                    }else if(mySelect.value == 3){
+                                        var inputText = {{ $packages[2]->price }};
                                     }
-                            
-                                    priceElement.textContent = price;
-                                });
+                                    document.getElementById('package_price').innerHTML = inputText;
+                                }
                             </script>
                         </div><br><br>
                         <div class="row m-0">

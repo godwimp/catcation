@@ -30,13 +30,13 @@
             <div class="col-6">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html#about-us">About</a>
+                        <a class="nav-link text-black fw-bold" href="/#about-us">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html#services">Services</a>
+                        <a class="nav-link text-black fw-bold" href="/#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
@@ -50,14 +50,17 @@
                 </ul>
             </div>
             <div class="col" id="nav-right">
-                {{-- Welcome, {{$firstName}} --}}
-                <button class="btn btn-danger" onclick="logout()">Logout</button>
+                Welcome, {{$user}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
             </div>
         </div>
         <div class="row bg-warning-subtle">
             <br><br><br><br>
         </div>
-        <div class="row bg-warning-subtle">
+        {{-- <div class="row bg-warning-subtle">
             <div class="col text-center">
                 <br>
                 <div class="h4 fw-bold" style="color: #FF5800;">Package Details</div>
@@ -83,7 +86,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <button onclick="isLogin()" type="button" class="btn shadow-sm" style="background-color: #FF5800;">
-                                            <a class="fw-bold text-white mx-2 text-decoration-none">Add to cart</a>
+                                            <a class="fw-bold text-white mx-2 text-decoration-none">Buy</a>
                                         </button>
                                     </div>
                                     <div class="col text-start">
@@ -95,9 +98,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row bg-warning-subtle text-center">
-            <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages</div>
+            <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages to Choose</div>
         </div>
         <div class="row bg-warning-subtle justify-content-center">
             <div class="col-3">
@@ -107,7 +110,7 @@
                         <p id="package-desc-basic" class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage1()" href="package.html">Details</a>
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage1()" href="/package">Details</a>
                     </div>
                 </div>
             </div>
@@ -118,7 +121,7 @@
                         <p id="package-desc-premium" class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage2()" href="package.html">Details</a>
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage2()" href="/package">Details</a>
                     </div>
                 </div>
             </div>
@@ -129,7 +132,7 @@
                         <p id="package-desc-luxury" class="card-text">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage3()" href="package.html">Details</a>
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage3()" href="/package">Details</a>
                     </div>
                 </div>
             </div>

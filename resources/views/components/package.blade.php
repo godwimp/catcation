@@ -30,13 +30,13 @@
             <div class="col-6">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html#about-us">About</a>
+                        <a class="nav-link text-black fw-bold" href="/#about-us">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html#services">Services</a>
+                        <a class="nav-link text-black fw-bold" href="/#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
@@ -45,12 +45,16 @@
                         <a class="nav-link text-black fw-bold" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="blog.html">Blog</a>
+                        <a class="nav-link text-black fw-bold" href="/blog">Blog</a>
                     </li>
                 </ul>
             </div>
             <div class="col" id="nav-right">
-                
+                Welcome, {{$user}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
             </div>
         </div>
         <div class="row bg-warning-subtle">
@@ -81,8 +85,8 @@
                                 </ul>
                                 <div class="row">
                                     <div class="col-4">
-                                        <button onclick="isLogin()" type="button" class="btn shadow-sm" style="background-color: #FF5800;">
-                                            <a class="fw-bold text-white mx-2 text-decoration-none">Add to cart</a>
+                                        <button onclick="window.location.href = '{{ route('checkout') }}'" type="button" class="btn shadow-sm" style="background-color: #FF5800;">
+                                            <a class="fw-bold text-white mx-2 text-decoration-none">Buy</a>
                                         </button>
                                     </div>
                                     <div class="col text-start">
@@ -97,42 +101,25 @@
         </div>
         <div class="row bg-warning-subtle text-center">
             <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages</div>
-        </div>
+        <?php $count = $packages->count(); ?>
+        @while($count > 0)
         <div class="row bg-warning-subtle justify-content-center">
-            <div class="col-3">
-                <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF894B; width: 80%;">
-                    <h5 id="package-name-basic" class="card-title fw-bold text-light"><br><br>Basic<br><br><br></h5>
-                    <div class="card-body text-center bg-light rounded-top-5">
-                        <p id="package-desc-basic" class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage1()" href="package.html">Details</a>
+            @foreach($packages as $package)
+                <div class="col-3">
+                    <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF894B; width: 80%;">
+                        <h5 id="package-name-basic" class="card-title fw-bold text-light"><br><br>{{ $package->name }}<br><br><br></h5>
+                        <div class="card-body text-center bg-light rounded-top-5">
+                            <p id="package-desc-basic" class="card-text">
+                                {{  $package->description }}
+                            </p>
+                            <a class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="/package/{id}">Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">
-                <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF742B; width: 80%;">
-                    <h5 id="package-name-premium" class="card-title fw-bold text-light"><br><br>Premium<br><br><br></h5>
-                    <div class="card-body text-center bg-light rounded-top-5">
-                        <p id="package-desc-premium" class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage2()" href="package.html">Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF5800; width: 80%;">
-                    <h5 id="package-name-luxury" class="card-title fw-bold text-light"><br><br>Luxury<br><br><br></h5>
-                    <div class="card-body text-center bg-light rounded-top-5">
-                        <p id="package-desc-luxury" class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage3()" href="package.html">Details</a>
-                    </div>
-                </div>
-            </div>
+                <?php $count--; ?>
+            @endforeach
         </div>
+        @endwhile
         <!-- --ini footer-- -->
         <div class="row bg-warning-subtle"><br><br><br></div>
         <div class="row" style="background-color: #FF7A34;">

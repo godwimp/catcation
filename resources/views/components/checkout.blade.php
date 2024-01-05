@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blog | CatCation</title>
+    <title>Checkout | CatCation</title>
     <link rel="icon" type="image/x-icon" href="{{asset('image/favicon.ico')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -41,9 +41,8 @@
         }
     </style>
 </head> 
-<body style="background-color:#FF7A34;">
+<body class="bg-warning-subtle">
     <div class="container-fluid">
-        <!-- --ini navigasi-- -->
         <div class="row bg-warning-subtle shadow-sm px-5 align-items-center fixed-top">
             <div class="col-3">
                 <ul class="nav justify-content-start p-3"> 
@@ -57,13 +56,13 @@
             <div class="col-6">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html">Home</a>
+                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html#about-us">About</a>
+                        <a class="nav-link text-black fw-bold" href="/#about-us">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="index.html#services">Services</a>
+                        <a class="nav-link text-black fw-bold" href="/#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
@@ -72,191 +71,128 @@
                         <a class="nav-link text-black fw-bold" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="blog.html">Blog</a>
+                        <a class="nav-link text-black fw-bold" href="/blog">Blog</a>
                     </li>
                 </ul>
             </div>
-            <div id="nav-right" class="col">
+
+            <div class="col">
+                <ul id="nav-right" class="nav justify-content-end">
+                    <li class="nav-item">
+                        <img style="width: 40px; height: 40px;" class="rounded-circle" src="image/ProfilePic.jpg" alt="ProfilePic">
+                    </li>
+                </ul>
+                Welcome, {{$user}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
             </div>
         </div>
         <div class="row bg-warning-subtle">
             <br><br><br><br>
         </div>
-        
-
-        <!-- --ini featured content-- -->
-        <div class="row bg-warning-subtle">
+    </div>
+    <div class="container">
+        <div class="h3 mt-4 fw-bold" style="color:#FF5800">Payment</div><br>
+        <div class="row px-2 m-0 p-2 align-items-center rounded-2" style="background-color: #FF5800;">
+            <div class="col-1">
+                <img width="40px" src="{{asset('image/VoicherLogo.png')}}" alt="VoicherLogo">
+            </div>
+            <div class="col-9">
+                <div class="fw-bold text-light">1 Voucher Available!</div>
+            </div>
+            <div class="col-2 text-end">
+                <button type="button" class="btn rounded-5 fw-bold" style="background-color: white; color: #FF5800;">Apply Now</button>
+            </div>
+        </div><br>
+        <form class="row" method="POST" action="{{route('transaction')}}">
+            @csrf
             <div class="col">
-                <div class="card p-3 mx-5 border-0 rounded-5 ps-5 shadow" style="background-color: #FF5800;">
+                <div class="card border-2 shadow p-3 h-100" style="border-color: #FF5800; color:#FF5800">
                     <div class="row">
                         <div class="col">
-                            <div class="h4 text-light fw-bold mt-4">Neque Porro quisquam est</div>
-                            <p class="lead text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-                            <button type="button" class="btn btn-outline-warning text-bg-light shadow-sm" style="border-color: #FF5800;">
-                                <div  class="fw-bold" style="color: #FF5800;">Read More</div>
-                            </button>
+                            <label for="first_name" class="form-label">First Name *</label>
+                            <input type="text" class="form-control rounded-1 border-dark-subtle" id="first_name" name= "first_name" required>
                         </div>
-                        <div class="col-1"></div>
-                        <div class="col-7">
-                            <img src="{{asset('image/FeaturedBlog.png')}}" alt="FeaturedBlog" width="100%">
+                        <div class="col">
+                            <label for="last_name" class="form-label">Last Name *</label>
+                            <input type="text" class="form-control rounded-1 border-dark-subtle" id="last_name" name="last_name"  required>
                         </div>
                     </div>
+                    <div class="row my-4">
+                        <div class="col">
+                            <label for="address" class="form-label">Address *</label>
+                            <input type="text" class="form-control rounded-1 border-dark-subtle" id="address" name="address" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="phone_number" class="form-label">Phone Number *</label>
+                            <input type="text" class="form-control rounded-1 border-dark-subtle" id="phone_number" name="phone_number" required>
+                        </div>
+                        <div class="col">
+                            <label for="email" class="form-label">E-mail Address *</label>
+                            <input type="text" class="form-control rounded-1 border-dark-subtle" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="row my-4 mb-5">
+                        <div class="col">
+                            <label for="cat_name" class="form-label">Cat Name *</label>
+                            <input type="text" class="form-control rounded-1 border-dark-subtle" id="cat_name" name="cat_name"  required>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row bg-warning-subtle">
-            <br><br>
-        </div>
-
-        <!-- --ini content 1-- -->
-        <div class="row bg-warning-subtle">
             <div class="col">
-                <div class="ms-5 card border-0 rounded-4 shadow m-auto" style="width: 80%;">
-                    <img src="{{asset('image/ContentImage.png')}}" alt="ContentImage" class="card-img-top"></img>
+                <div class="card border-2 shadow p-3 h-100" style="border-color: #FF5800; color:#FF5800">
                     <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FF5800;">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet
-                        </p>
-                        <button type="button" class="btn btn-warning text-light shadow-sm" style="background-color: #FF5800;">Read More</button>
+                        
+                        <div class="card-title text-black">
+                            <p class="h5 fw-bold" style="color:#FF5800;">Choose Package</p>
+                            <select class="form-select rounded-1 border-dark-subtle" aria-label="Default select example" id="package_choose" name="package_choose">
+                                <option value="1">Basic</option>
+                                <option value="2">Premium</option>
+                                <option value="3">Luxury</option>
+                            </select>
+                            <p class="lead fw-bold" style="color: #FF5800;">Rp. <span id="package_price">0</span></p><br>
+                            <script>
+                                const selectElement = document.getElementById('package_choose');
+                                const priceElement = document.getElementById('package_price');
+                            
+                                selectElement.addEventListener('change', function() {
+                                    const selectedValue = parseInt(this.value);
+                                    let price = 0;
+                            
+                                    switch (selectedValue) {
+                                        case 1:
+                                            price = 150000;
+                                            break;
+                                        case 2:
+                                            price = 250000;
+                                            break;
+                                        case 3:
+                                            price = 450000;
+                                            break;
+                                        default:
+                                            price = 0;
+                                            break;
+                                    }
+                            
+                                    priceElement.textContent = price;
+                                });
+                            </script>
+                        </div><br><br>
+                        <div class="row m-0">
+                            <button type="submit" class="btn rounded-2 fw-bold text-light" style="background-color: #FF5800;">Checkout</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card border-0 rounded-4 shadow m-auto" style="width: 80%;">
-                    <img src="{{asset('image/ContentImage.png')}}" alt="ContentImage" class="card-img-top"></img>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FF5800;">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet
-                        </p>
-                        <button type="button" class="btn btn-warning text-light shadow-sm" style="background-color: #FF5800;">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="me-5 card border-0 rounded-4 shadow m-auto" style="width: 80%;">
-                <img src="{{asset('image/ContentImage.png')}}" alt="ContentImage" class="card-img-top"></img>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FF5800;">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet
-                        </p>
-                        <button type="button" class="btn btn-warning text-light shadow-sm" style="background-color: #FF5800;">Read More</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row bg-warning-subtle">
-            <br><br>
-        </div>
-
-        <!-- --ini content 2-- -->
-        <div class="row bg-warning-subtle">
-            <div class="col">
-                <div class="ms-5 card border-0 rounded-4 shadow m-auto" style="width: 80%;">
-                    <img src="{{asset('image/ContentImage.png')}}" alt="ContentImage" class="card-img-top"></img>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FF5800;">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet
-                        </p>
-                        <button type="button" class="btn btn-warning text-light shadow-sm" style="background-color: #FF5800;">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-0 rounded-4 shadow m-auto" style="width: 80%;">
-                    <img src="{{asset('image/ContentImage.png')}}" alt="ContentImage" class="card-img-top"></img>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FF5800;">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet
-                        </p>
-                        <button type="button" class="btn btn-warning text-light shadow-sm" style="background-color: #FF5800;">Read More</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="me-5 card border-0 rounded-4 shadow m-auto" style="width: 80%;">
-                <img src="{{asset('image/ContentImage.png')}}" alt="ContentImage" class="card-img-top"></img>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold" style="color: #FF5800;">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h5>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet
-                        </p>
-                        <button type="button" class="btn btn-warning text-light shadow-sm" style="background-color: #FF5800;">Read More</button>
-                    </div>
-                </div><br><br>
-            </div>
-        </div>
-
-        <!-- --ini pagination-- -->
-        <div class="row bg-warning-subtle">
-            <div class="col">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav><br>
-            </div>
-        </div>
-
-        <!-- --ini footer-- -->
-        <div class="row" style="background-color: #FF7A34;">
-            <div class="col-4">
-                <div class="card border-0 ms-5 mt-5 mb-2" style="background-color: #FF7A34;"><div class="h4 fw-bold text-light text-start">CatCation.</div></div>
-                <div class="card border-0 ms-5 mb-2" style="background-color: #FF7A34;">
-                    <div class="h5 fw-bold text-light text-start">Find us</div>
-                    <div class="card-text text-start text-light">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-                    </div>
-                    <br>
-                    <p class="lead text-light fw-bold text-start" style="font-size: 15px;">
-                        <img class="mx-1" src="{{asset('image/LogoIG.png')}}" alt="LogoIG" width="30px">
-                        <img class="mx-1" src="{{asset('image/LogoFacebook.png')}}" alt="LogoFacebook" width="30px">
-                        <img class="mx-1" src="{{asset('image/LogoYucub.png')}}" alt="LogoYucub" width="30px">
-                    </p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card border-0 ms-5 mt-5 mb-2" style="background-color: #FF7A34;">
-                    <div class="h5 fw-bold text-light text-start">Services</div>
-                    <div class="card-text text-start">
-                        <p><a href="#" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fw-lighter">Cat Grooming</a></p>
-                        <p><a href="#" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fw-lighter">Cat Care</a></p>
-                        <p><a href="#" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fw-lighter">Cat Playtime</a></p>
-                        <p><a href="#" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fw-lighter">Cat Hotel</a></p>
-                    </div>
-                    <div class="h5 fw-bold text-light text-start mt-3">Contact Us</div>
-                    <p class="lead text-light fw-bold text-start" style="font-size: 15px;">
-                        <img class="mx-1" src="{{asset('image/LogoWA.png')}}" alt="LogoWA" width="30px">
-                        +6282-XXXX-XXXX
-                    </p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card border-0 m-5 text-start" style="background-color: #FF7A34;">
-                    <div class="h4 fw-bold text-light">About Us</div>
-                    <p class="lead text-light" style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                </div>
-                <div class="card border-0 ms-5 justify-content-end align-content-end align-items-end" style="background-color: #FF7A34;">
-                    <img class="ms-5" src="{{asset('image/CatFooter1.png')}}" alt="CatFooter1" width="200px">
-                </div>
-            </div>
+        </form>
+        <!-- footer -->
+        <div class="row mt-5 pt-5 text-center">
+            <p style="color: #FF5800;" class="fw-bold">2023 - CatCation.</p>
         </div>
     </div>
-</body>
 </html>

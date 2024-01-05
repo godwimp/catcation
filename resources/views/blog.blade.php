@@ -66,10 +66,10 @@
                         <a class="nav-link text-black fw-bold" href="/#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
+                        <a class="nav-link text-black fw-bold" href="/#">FAQs</a>  
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="#">Contact Us</a>
+                        <a class="nav-link text-black fw-bold" href="/#">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="blog.html">Blog</a>
@@ -77,6 +77,7 @@
                 </ul>
             </div>
             <div id="nav-right" class="col">
+                
             </div>
         </div>
         <div class="row bg-warning-subtle">

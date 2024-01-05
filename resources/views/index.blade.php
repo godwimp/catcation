@@ -50,6 +50,14 @@
                 </ul>
             </div>
             <div id="nav-right" class="col">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="/register">Register</a>
+                    </li>
+                </ul>
             </div>
         </div>
 <!-- Ini bagian Home -->

@@ -45,43 +45,88 @@
     <div class="container-fluid">
         <!-- --ini navigasi-- -->
         <div class="row bg-warning-subtle shadow-sm px-5 align-items-center fixed-top">
-            <div class="col-3">
+            <div class="col-md-3 col-6">
                 <ul class="nav justify-content-start p-3"> 
                     <li class="nav-item">
-                        <img src="{{asset('image/Logo.png')}}" alt="Logo" width=" 35px">
-                        <img src="{{asset('image/FontLogo.png')}}" alt="FontLogo" width="110px">
+                        <a href="/">
+                            <img src="{{asset('image/Logo.png')}}" alt="Logo" width=" 35px">
+                            <img class="d-none d-md-inline" src="{{asset('image/FontLogo.png')}}" alt="FontLogo" width="110px">
+                        </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="col-6">
+            <div class="col-6 d-none d-md-flex">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/">Home</a>
+                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#about-us">About</a>
+                        <a class="nav-link text-black fw-bold" href="#about-us">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#services">Services</a>
+                        <a class="nav-link text-black fw-bold" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#">FAQs</a>  
+                        <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#">Contact Us</a>
+                        <a class="nav-link text-black fw-bold" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="blog.html">Blog</a>
+                        <a class="nav-link text-black fw-bold" href="/blog">Blog</a>
                     </li>
                 </ul>
             </div>
-            <div id="nav-right" class="col">
-                Welcome, {{$user}}
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+            <div id="nav-right" class="col-md-3 col-6">
+                @auth
+                <ul class="nav justify-content-end">
+                    <li class="nav-item dropdown-center">
+                        <button class="btn dropdown-toggle fw-bold" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img style="width: 40px; height: 40px;" class="rounded-circle" src="{{ asset('image/ProfilePic.jpg') }}" alt="ProfilePic">
+                            {{ $user }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="/">Home</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#about-us">About</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#services">Services</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#">FAQs</a>  
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#">Contact Us</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="/blog">Blog</a>
+                            </li>
+                            <li>
+                                <a type="button" class="dropdown-item fw-bold hover" style="color: #FF5800;" href="{{ route('dashboard') }}">Start Order</a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                    <button type="submit" class="dropdown-item fw-bold">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                @else
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover mx-2" style="background-color: #FF5800;" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('register') }}">Register</a>
+                    </li>
+                    </ul>
+                @endauth
             </div>
         </div>
         <div class="row bg-warning-subtle">

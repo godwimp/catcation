@@ -19,26 +19,24 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid w-100">
+    <div class="container-fluid w-100 py-4">
         <div class="row h-100">
-            <form method="POST" action="{{route('login')}}" class="col-8 h-100 needs-validation m-auto w-50" novalidate>
+            <form method="POST" action="{{route('login')}}" class="col-md-8 col-12 h-100 needs-validation m-auto w-50" novalidate>
                 @csrf
-                <div class="row justify-content-center">
-                    <div class="card rounded-0 border-0 w-50">
-                        <div class="card-body text-center">
-                            <div class="card-title">
-                                <div class="h4 fw-bold">Login</div>
-                            </div>
-                            <div class="card-text">
-                                <div class="lead fw-bold">Hi, Welcome back!</div>
-                                <div class="text-secondary">Login and keep your cat's well-being a top priority</div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="h4 fw-bold">Login</div>
                     </div>
-                </div>
+                </div><br>
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="lead fw-bold">Hi, Welcome back!</div>
+                        <div class="text-secondary">Login and keep your cat's well-being a top priority</div>
+                    </div>
+                </div><br><br>
                 <div class="row">
                     <label for="email" class="form-label">E-mail</label>
-                    <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email"required>
+                    <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email" required>
                     <div class="valid-feedback">
                         Okay
                     </div>
@@ -51,7 +49,7 @@
                     </div>
                 </div><br>
                 <div class="row">
-                    <div class="col text-start">
+                    <div class="col-md-6 text-start">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
@@ -59,13 +57,13 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col text-end">
+                    <div class="col-md-6 text-end">
                         <a href="#">Forgot password?</a>
                     </div>
                 </div><br><br><br>
                 
                 <div class="row">
-                    <button onclick="saveLogin()" class="btn fw-bold text-light" style="background-color: #FF5800;" type="submit">Log in</button>
+                    <button class="btn fw-bold text-light" style="background-color: #FF5800;" type="submit">Log in</button>
                 </div><br><br>
                 <div class="row">
                     <div class="col"><hr></div>
@@ -79,7 +77,7 @@
                     <p class="text-secondary">Don't have an account? <a href="{{route('register')}}">Sign Up</a></p>
                 </div>
             </form>
-            <div class="col-4" style="background-color: #FFCB7C;">
+            <div class="col-md-4 col-12 d-none d-md-flex" style="background-color: #FFCB7C;">
                 <img class="w-100" src="{{asset('image/SignUpCat.png')}}" alt="SignUpCat">
             </div>
         </div>

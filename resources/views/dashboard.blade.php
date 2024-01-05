@@ -18,25 +18,27 @@
     <div class="container-fluid">
         <!-- --ini navigasi-- -->
         <div class="row bg-warning-subtle shadow-sm px-5 align-items-center fixed-top">
-            <div class="col-3">
+            <div class="col-md-3 col-6">
                 <ul class="nav justify-content-start p-3"> 
                     <li class="nav-item">
-                        <img src="{{ asset('image/Logo.png') }}" alt="Logo" width=" 35px">
-                        <img src="{{ asset('image/FontLogo.png') }}" alt="FontLogo" width="110px">
+                        <a href="/">
+                            <img src="{{asset('image/Logo.png')}}" alt="Logo" width=" 35px">
+                            <img class="d-none d-md-inline" src="{{asset('image/FontLogo.png')}}" alt="FontLogo" width="110px">
+                        </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="col-6">
+            <div class="col-6 d-none d-md-flex">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" style="color: #FF5800;" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#about-us">About</a>
+                        <a class="nav-link text-black fw-bold" href="#about-us">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black fw-bold" href="/#services">Services</a>
+                        <a class="nav-link text-black fw-bold" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black fw-bold" href="#">FAQs</a>  
@@ -49,98 +51,97 @@
                     </li>
                 </ul>
             </div>
-            <div class="col" id="nav-right">
-                Welcome, {{$user}}
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+            <div id="nav-right" class="col-md-3 col-6">
+                @auth
+                <ul class="nav justify-content-end">
+                    <li class="nav-item dropdown-center">
+                        <button class="btn dropdown-toggle fw-bold" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img style="width: 40px; height: 40px;" class="rounded-circle" src="{{ asset('image/ProfilePic.jpg') }}" alt="ProfilePic">
+                            {{ $user }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="/">Home</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#about-us">About</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#services">Services</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#">FAQs</a>  
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="#">Contact Us</a>
+                            </li>
+                            <li class="d-flex d-md-none">
+                                <a type="button" class="dropdown-item fw-bold hover" href="/blog">Blog</a>
+                            </li>
+                            <li>
+                                <a type="button" class="dropdown-item fw-bold hover" style="color: #FF5800;" href="{{ route('dashboard') }}">Start Order</a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                    <button type="submit" class="dropdown-item fw-bold">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                @else
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover mx-2" style="background-color: #FF5800;" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="{{ route('register') }}">Register</a>
+                    </li>
+                    </ul>
+                @endauth
             </div>
         </div>
         <div class="row bg-warning-subtle">
             <br><br><br><br>
         </div>
-        {{-- <div class="row bg-warning-subtle">
-            <div class="col text-center">
-                <br>
-                <div class="h4 fw-bold" style="color: #FF5800;">Package Details</div>
-                <br>
+        <div class="row bg-warning-subtle text-center">
+            <div class="col">
+                <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages to Choose</div>
+                <?php $count = $packages->count(); ?>
+                @while($count > 0)
+                <div class="row bg-warning-subtle justify-content-center">
+                    @foreach($packages as $package)
+                        <div class="col-12 col-md-3">
+                            <div class="card shadow text-center border-0 rounded-2 mx-2 mt-5 mt-md-0" style="background: #FF894B;">
+                                <h5 id="package-name-basic" class="card-title fw-bold text-light"><br><br>{{ $package->name }}<br><br><br></h5>
+                                <div class="card-body text-center bg-light rounded-top-5">
+                                    <p id="package-desc-basic" class="card-text">
+                                        {{  $package->description }}
+                                    </p>
+                                    <a class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" href="/package/{{ $package->id }}">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php $count--; ?>
+                    @endforeach
+                </div>
+                @endwhile
             </div>
         </div>
         <div class="row bg-warning-subtle">
             <div class="col">
-                <div class="card rounded-4 border-0 shadow-lg mx-3">
-                    <div class="row">
-                        <div class="col">
-                            <img width="100%" src="{{asset('image/PackageCat1.png')}}" alt="PackageCat1">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <div id="name-package" class="h4 card-title fw-bold mt-4" style="color:#FF5800">Package Name</div>
-                                <p id="info-package" class="card-text">Package Info</p>
-                                <ul class="card-text">
-                                    <li>Info pertama</li>
-                                    <li>Info kedua</li>
-                                    <li>Info ketiga</li>
-                                </ul>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button onclick="isLogin()" type="button" class="btn shadow-sm" style="background-color: #FF5800;">
-                                            <a class="fw-bold text-white mx-2 text-decoration-none">Buy</a>
-                                        </button>
-                                    </div>
-                                    <div class="col text-start">
-                                        <p class="lead fw-bold" style="color: #FF5800;">Rp. <span id="package-price">0</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card border-0 bg-warning-subtle ms-5 mt-3" style="height: 235px;">
+                    <img src="{{asset('image/CatFooter2.png')}}" alt="CatFooter2"  style="width: 140px;" class="img-fluid d-none d-md-block">
+                    <img src="{{asset('image/Ball.png')}}" alt="Ball"  style="width: 70px;" class="img-fluid ms-auto d-none d-md-block">
                 </div>
             </div>
-        </div> --}}
-        <div class="row bg-warning-subtle text-center">
-            <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages to Choose</div>
-        </div>
-        <div class="row bg-warning-subtle justify-content-center">
-            <div class="col-3">
-                <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF894B; width: 80%;">
-                    <h5 id="package-name-basic" class="card-title fw-bold text-light"><br><br>Basic<br><br><br></h5>
-                    <div class="card-body text-center bg-light rounded-top-5">
-                        <p id="package-desc-basic" class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage1()" href="/package">Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF742B; width: 80%;">
-                    <h5 id="package-name-premium" class="card-title fw-bold text-light"><br><br>Premium<br><br><br></h5>
-                    <div class="card-body text-center bg-light rounded-top-5">
-                        <p id="package-desc-premium" class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage2()" href="/package">Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card shadow text-center border-0 rounded-2 m-auto" style="background: #FF5800; width: 80%;">
-                    <h5 id="package-name-luxury" class="card-title fw-bold text-light"><br><br>Luxury<br><br><br></h5>
-                    <div class="card-body text-center bg-light rounded-top-5">
-                        <p id="package-desc-luxury" class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                        <a type="button" class="btn btn-warning text-light fw-bold hover" style="background-color: #FF5800;" onclick="getPackage3()" href="/package">Details</a>
-                    </div>
-                </div>
-            </div>
+            <div class="col-9"></div>
         </div>
         <!-- --ini footer-- -->
-        <div class="row bg-warning-subtle"><br><br><br></div>
+        <div class="row bg-warning-subtle"></div>
         <div class="row" style="background-color: #FF7A34;">
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <div class="card border-0 ms-5 mt-5 mb-2" style="background-color: #FF7A34;"><div class="h4 fw-bold text-light text-start">CatCation.</div></div>
                 <div class="card border-0 ms-5 mb-2" style="background-color: #FF7A34;">
                     <div class="h5 fw-bold text-light text-start">Find us</div>
@@ -155,7 +156,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <div class="card border-0 ms-5 mt-5 mb-2" style="background-color: #FF7A34;">
                     <div class="h5 fw-bold text-light text-start">Services</div>
                     <div class="card-text text-start">
@@ -171,7 +172,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <div class="card border-0 m-5 text-start" style="background-color: #FF7A34;">
                     <div class="h4 fw-bold text-light">About Us</div>
                     <p class="lead text-light" style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>

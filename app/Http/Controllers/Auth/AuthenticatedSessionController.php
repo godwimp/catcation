@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -25,11 +26,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        // $request->authenticate();
 
-        $request->session()->regenerate();
+        // $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+        Session::flash('login_error', 'Invalid email or password');
+        return redirect()->back();
     }
 
     /**

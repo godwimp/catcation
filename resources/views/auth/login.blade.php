@@ -36,12 +36,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <label for="email" class="form-label">E-mail</label>
                     <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email"required>
                     <div class="valid-feedback">
                         Okay
                     </div>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div><br>
                 <div class="row">
                     <label for="password" class="form-label">Password</label>
@@ -49,6 +54,25 @@
                     <div class="invalid-feedback">
                         Please insert your password!
                     </div>
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                    @if(session('login_error'))
+                        <div class="invalid-feedback">
+                            {{session('login_error')}}
+                        </div>
+                    @endif
+                </div><br> --}}
+                <div class="row">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email" required>
+                </div><br>
+                <div class="row">
+                    <label for="password" class="form-label">Password</label>
+                    <input placeholder="Enter password" type="password" class="form-control" id="password" name="password" required>
+                    <div id="password-error" class="invalid-feedback" style="display: none;"></div>
                 </div><br>
                 <div class="row">
                     <div class="col text-start">
@@ -84,5 +108,15 @@
             </div>
         </div>
     </div>
+    @if(session('login_error'))
+        <script>
+            window.addEventListener('DOMContentLoaded', (event) => {
+                document.getElementById('email').classList.add('is-invalid');
+                document.getElementById('password-error').innerText = 'Invalid email or password';
+                document.getElementById('password-error').style.display = 'block';
+                alert('Invalid email or password');
+            });
+        </script>
+    @endif
 </body>
 </html>

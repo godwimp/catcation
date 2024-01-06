@@ -68,12 +68,26 @@
                 <div class="row">
                     <label for="email" class="form-label">E-mail</label>
                     <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email" required>
-                </div><br>
+                </div>
+                @if($errors->has('email'))
+                    <div id="email-error" class="invalid-feedback" style="display: block;">{{$errors->first('email')}}</div>
+                @endif
+                @if(session('login_error'))
+                    <div id="login-error" class="invalid-feedback" style="display: block;">{{session('email_error')}}</div>
+                @endif
+                <br>
                 <div class="row">
                     <label for="password" class="form-label">Password</label>
                     <input placeholder="Enter password" type="password" class="form-control" id="password" name="password" required>
                     <div id="password-error" class="invalid-feedback" style="display: none;"></div>
-                </div><br>
+                </div>
+                @if($errors->has('password'))
+                    <div id="password-error" class="invalid-feedback" style="display: block;">{{$errors->first('password')}}</div>
+                @endif
+                @if(session('login_error'))
+                    <div id="login-error" class="invalid-feedback" style="display: block;">{{session('login_error')}}</div>
+                @endif
+                <br>
                 <div class="row">
                     <div class="col text-start">
                         <div class="form-check">
@@ -108,15 +122,22 @@
             </div>
         </div>
     </div>
-    @if(session('login_error'))
-        <script>
-            window.addEventListener('DOMContentLoaded', (event) => {
-                document.getElementById('email').classList.add('is-invalid');
-                document.getElementById('password-error').innerText = 'Invalid email or password';
-                document.getElementById('password-error').style.display = 'block';
-                alert('Invalid email or password');
-            });
-        </script>
+    @if(session('login_error') || $errors->has('email') || $errors->has('password'))
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var errorMessage = @if(session('login_error')) '{{ session('login_error') }}' @endif;
+            var emailError = @if($errors->has('email')) '{{ $errors->first('email') }}' @endif;
+            var passwordError = @if($errors->has('password')) '{{ $errors->first('password') }}' @endif;
+
+            if (emailError) {
+                alert(emailError);
+            } else if (passwordError) {
+                alert(passwordError);
+            } else {
+                alert(errorMessage);
+            }
+        });
+    </script>
     @endif
 </body>
 </html>

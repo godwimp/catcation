@@ -34,13 +34,19 @@ class AuthenticatedSessionController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ]);
+        ], [
+            
+            'email.required' => 'Email is required',
+            'email.email' => 'Email is invalid',
+            'password.required' => 'Password is required',]
+        );
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         }
-        Session::flash('login_error', 'Invalid email or password');
+        Session::flash('email_error', 'Invalid Email');
+        Session::flash('login_error', 'Invalid Password');
         return redirect()->back();
     }
 

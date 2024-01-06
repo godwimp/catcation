@@ -38,9 +38,11 @@
                 <div class="row">
                     <label for="first_name" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="first_name" name="first_name" required>
-                    <div class="valid-feedback">
-                        Okay
-                    </div>
+                    @error('first_name')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div><br>
                 <div class="row">
                     <label for="last_name" class="form-label">Last Name</label>
@@ -52,23 +54,31 @@
                 <div class="row">
                     <label for="email" class="form-label">E-mail</label>
                     <input type="text" class="form-control" id="email" name="email" required>
-                    <div class="invalid-feedback">
-                        Please choose a E-mail!
-                    </div>
+                    @error('email')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div><br>
+                
                 <div class="row">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
-                    <div class="invalid-feedback">
-                        Please insert your password!
-                    </div>
+                    @error('password')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div><br>
+                
                 <div class="row">
                     <label for="password_confirmation" class="form-label">Password Confirmation</label>
-                    <input type="password" class="form-control" id="password-confirmation" name="password_confirmation" required>
-                    <div class="invalid-feedback">
-                        Please insert your password confirmation!
-                    </div>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    @error('password_confirmation')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div><br>
                 <div class="row">
                     <div class="form-check">
@@ -84,6 +94,11 @@
                 <div class="row">
                     <button class="btn fw-bold text-light" style="background-color: #FF5800;" type="submit">Sign Up</button>
                 </div><br><br>
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col"><hr></div>
                     <div class="col-1 text-center text-secondary">Or</div>

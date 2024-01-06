@@ -35,7 +35,16 @@ class RegisteredUserController extends Controller
             'last_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ], [
+            'first_name.required' => 'Please enter your first name.',
+            'email.required' => 'Please enter your email.',
+            'email.email' => 'Invalid email format.',
+            'password.required' => 'Please enter your password.',
+            'password.confirmed' => 'Password confirmation does not match.',
+        ], [
+            'email.unique' => 'Email already registered.'
+        ]
+        );
 
         $user = User::create([
             'first_name' => $request->first_name,
@@ -48,6 +57,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with('success', 'Registration successful.');
     }
 }

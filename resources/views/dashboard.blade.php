@@ -60,45 +60,6 @@
         <div class="row bg-warning-subtle">
             <br><br><br><br>
         </div>
-        {{-- <div class="row bg-warning-subtle">
-            <div class="col text-center">
-                <br>
-                <div class="h4 fw-bold" style="color: #FF5800;">Package Details</div>
-                <br>
-            </div>
-        </div>
-        <div class="row bg-warning-subtle">
-            <div class="col">
-                <div class="card rounded-4 border-0 shadow-lg mx-3">
-                    <div class="row">
-                        <div class="col">
-                            <img width="100%" src="{{asset('image/PackageCat1.png')}}" alt="PackageCat1">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <div id="name-package" class="h4 card-title fw-bold mt-4" style="color:#FF5800">Package Name</div>
-                                <p id="info-package" class="card-text">Package Info</p>
-                                <ul class="card-text">
-                                    <li>Info pertama</li>
-                                    <li>Info kedua</li>
-                                    <li>Info ketiga</li>
-                                </ul>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button onclick="isLogin()" type="button" class="btn shadow-sm" style="background-color: #FF5800;">
-                                            <a class="fw-bold text-white mx-2 text-decoration-none">Buy</a>
-                                        </button>
-                                    </div>
-                                    <div class="col text-start">
-                                        <p class="lead fw-bold" style="color: #FF5800;">Rp. <span id="package-price">0</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="row bg-warning-subtle text-center">
             <div class="h2 fw-bolder my-5" style="color: #FF5800;">Packages to Choose</div>
         </div>

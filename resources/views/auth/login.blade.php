@@ -36,35 +36,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email"required>
-                    <div class="valid-feedback">
-                        Okay
-                    </div>
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                </div><br>
-                <div class="row">
-                    <label for="password" class="form-label">Password</label>
-                    <input placeholder="Enter password" type="password" class="form-control" id="password" name="password" required>
-                    <div class="invalid-feedback">
-                        Please insert your password!
-                    </div>
-                    @error('password')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                    @if(session('login_error'))
-                        <div class="invalid-feedback">
-                            {{session('login_error')}}
-                        </div>
-                    @endif
-                </div><br> --}}
                 <div class="row">
                     <label for="email" class="form-label">E-mail</label>
                     <input placeholder="e.g. agusgansabiez@gmail.com" type="text" class="form-control" id="email" name="email" required>
